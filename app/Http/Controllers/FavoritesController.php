@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
+use App\Reputation;
 
 class FavoritesController extends Controller
 {
@@ -20,6 +21,8 @@ class FavoritesController extends Controller
     public function store(Reply $reply)
     {
         $reply->favorite();
+
+        Reputation::award($reply->owner, Reputation::REPLY_FAVORITED);
     }
     /**
      * Delete the favorite.
@@ -29,5 +32,7 @@ class FavoritesController extends Controller
     public function destroy(Reply $reply)
     {
         $reply->unfavorite();
+
+        Reputation::reduce($reply->owner, Reputation::REPLY_FAVORITED);
     }
 }
