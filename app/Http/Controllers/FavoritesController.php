@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Reply;
@@ -13,6 +14,7 @@ class FavoritesController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Store a new favorite in the database.
      *
@@ -22,8 +24,9 @@ class FavoritesController extends Controller
     {
         $reply->favorite();
 
-        Reputation::award($reply->owner, Reputation::REPLY_FAVORITED);
+        Reputation::gain($reply->owner, Reputation::REPLY_FAVORITED);
     }
+
     /**
      * Delete the favorite.
      *
@@ -33,6 +36,6 @@ class FavoritesController extends Controller
     {
         $reply->unfavorite();
 
-        Reputation::reduce($reply->owner, Reputation::REPLY_FAVORITED);
+        Reputation::lose($reply->owner, Reputation::REPLY_FAVORITED);
     }
 }
