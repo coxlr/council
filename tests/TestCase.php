@@ -22,22 +22,25 @@ abstract class TestCase extends BaseTestCase
 
     protected function signIn($user = null)
     {
-        $user = $user ?: create('App\User', ['confirmed' => true]);
+        $user = $user ?: create('App\User');
 
         $this->actingAs($user);
 
         return $this;
     }
 
-    protected function signInUnconfirmed()
+    protected function signInAdmin($admin = null)
     {
-        $user = create('App\User', ['confirmed' => false]);
+        $admin = $admin ?: create('App\User');
 
-        $this->actingAs($user);
+        config(['council.administrators' => [$admin->email]]);
+
+        $this->actingAs($admin);
 
         return $this;
     }
 
+    // Hat tip, @adamwathan.
     protected function disableExceptionHandling()
     {
         $this->oldExceptionHandler = $this->app->make(ExceptionHandler::class);
