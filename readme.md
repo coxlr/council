@@ -8,13 +8,14 @@ This is an open source forum that was built and maintained at Laracasts.com.
 
 > To run this project, you must have PHP 7 installed as a prerequisite.
 
-Begin by cloning this repository to your machine, and installing all Composer dependencies.
+Begin by cloning this repository to your machine, and installing all Composer & NPM dependencies.
 
 ```bash
 git clone git@github.com:JeffreyWay/council.git
-cd council && composer install
+cd council && composer install && npm install
 mv .env.example .env
 php artisan key:generate
+npm run dev
 ```
 
 ### Step 2.
@@ -35,7 +36,7 @@ Then, migrate your database to create tables.
 ```
 php artisan migrate
 ```
- 
+
 ### Step 3.
 
 Until an administration portal is available, manually insert any number of "channels" (think of these as forum categories) into the "channels" table in your database.
