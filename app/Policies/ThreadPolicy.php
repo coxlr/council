@@ -12,7 +12,6 @@ class ThreadPolicy
 
     public function before($user)
     {
-
     }
 
     /**
