@@ -43,6 +43,8 @@ class InstallCommand extends Command
             $this->call('migrate');
 
             $this->line("~ Database successfully migrated.");
+
+            $this->call('cache:clear');
         }
 
         $this->goodbye();
