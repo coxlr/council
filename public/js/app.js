@@ -36544,6 +36544,7 @@ Vue.component('paginator', __webpack_require__(498));
 Vue.component('user-notifications', __webpack_require__(501));
 Vue.component('avatar-form', __webpack_require__(504));
 Vue.component('wysiwyg', __webpack_require__(510));
+Vue.component('channel-dropdown', __webpack_require__(731));
 
 Vue.component('thread-view', __webpack_require__(518));
 
@@ -104065,6 +104066,250 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-03986566", module.exports)
+  }
+}
+
+/***/ }),
+/* 731 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(732)
+}
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(734)
+/* template */
+var __vue_template__ = __webpack_require__(735)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ChannelDropdown.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4e852e0d", Component.options)
+  } else {
+    hotAPI.reload("data-v-4e852e0d", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 732 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(733);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(164)("1f692b56", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e852e0d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ChannelDropdown.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e852e0d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ChannelDropdown.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 733 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(90)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.channel-dropdown {\n  padding: 0;\n}\n.input-wrapper {\n  padding: .5rem 1rem;\n}\n.channel-list {\n  max-height: 400px;\n  overflow: auto;\n  margin-bottom: 0;\n}\n.channel-list .list-group-item {\n    border-radius: 0;\n    border-left: none;\n    border-right: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 734 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['channels'],
+
+    data: function data() {
+        return {
+            toggle: false,
+            filter: ''
+        };
+    },
+
+
+    computed: {
+        filteredThreads: function filteredThreads() {
+            var _this = this;
+
+            return this.channels.filter(function (channel) {
+                return channel.name.toLowerCase().startsWith(_this.filter.toLocaleLowerCase());
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 735 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "dropdown", class: { open: _vm.toggle } }, [
+    _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: { href: "#", "aria-haspopup": "true", "aria-expanded": "false" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.toggle = !_vm.toggle
+          }
+        }
+      },
+      [_vm._v("\n        Channels "), _c("span", { staticClass: "caret" })]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "dropdown-menu channel-dropdown" }, [
+      _c("div", { staticClass: "input-wrapper" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.filter,
+              expression: "filter"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Filter Channels..." },
+          domProps: { value: _vm.filter },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.filter = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "list-group channel-list" },
+        _vm._l(_vm.filteredThreads, function(channel) {
+          return _c("li", { staticClass: "list-group-item" }, [
+            _c("a", {
+              attrs: { href: "/threads/" + channel.slug },
+              domProps: { textContent: _vm._s(channel.name) }
+            })
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4e852e0d", module.exports)
   }
 }
 
