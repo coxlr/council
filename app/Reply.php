@@ -142,5 +142,4 @@ class Reply extends Model
     {
         return $this->isBest();
     }
-}}
 }
