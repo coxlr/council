@@ -129,7 +129,6 @@ class Thread extends Model
         return $reply;
     }
 
-
     /**
      * Apply all relevant thread filters.
      *
