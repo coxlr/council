@@ -83783,12 +83783,7 @@ var render = function() {
                 )
               ])
             ])
-          : _c(
-              "div",
-              { ref: "body" },
-              [_c("highlight", { attrs: { content: _vm.body } })],
-              1
-            )
+          : _c("div", [_c("highlight", { attrs: { content: _vm.body } })], 1)
       ]),
       _vm._v(" "),
       _vm.authorize("owns", _vm.reply) ||
