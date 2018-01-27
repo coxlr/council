@@ -45,7 +45,6 @@ class YouWereMentioned extends Notification
     public function toArray($notifiable)
     {
         return [
-<<<<<<< HEAD
             'message' => $this->message(),
             'link' => $this->subject->path()
         ];
@@ -67,10 +66,3 @@ class YouWereMentioned extends Notification
         return $this->subject instanceof Reply ? $this->subject->owner : $this->subject->creator;
     }
 }
-=======
-            'message' => $this->subject['owner'].' mentioned you in '.$this->subject['title'],
-            'link' => $this->subject->path()
-        ];
-    }
-}
->>>>>>> 0147f2d6ef036623243b7aeac478a57c7d2b96e2
