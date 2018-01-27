@@ -65,4 +65,3 @@ class YouWereMentioned extends Notification
     {
         return $this->subject instanceof Reply ? $this->subject->owner : $this->subject->creator;
     }
-}
