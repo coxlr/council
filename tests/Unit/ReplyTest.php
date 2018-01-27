@@ -4,8 +4,8 @@ namespace Tests\Unit;
 
 use App\Reply;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReplyTest extends TestCase
 {
@@ -32,16 +32,6 @@ class ReplyTest extends TestCase
     }
 
     /** @test */
-    function it_can_detect_all_mentioned_users_in_the_body()
-    {
-        $reply = new Reply([
-            'body' => '@JaneDoe wants to talk to @JohnDoe'
-        ]);
-
-        $this->assertEquals(['JaneDoe', 'JohnDoe'], $reply->mentionedUsers());
-    }
-
-    /** @test */
     function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags()
     {
         $reply = new Reply([
@@ -65,13 +55,13 @@ class ReplyTest extends TestCase
         $reply->thread->update(['best_reply_id' => $reply->id]);
 
         $this->assertTrue($reply->fresh()->isBest());
-
     }
 
     /** @test */
     function a_reply_body_is_sanitized_automatically()
     {
         $reply = make('App\Reply', ['body' => '<script>alert("bad")</script><p>This is okay.</p>']);
+
         $this->assertEquals("<p>This is okay.</p>", $reply->body);
     }
 }
