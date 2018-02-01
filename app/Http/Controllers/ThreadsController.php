@@ -53,7 +53,7 @@ class ThreadsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Rules\Recaptcha     $recaptcha
+     * @param  \App\Rules\Recaptcha $recaptcha
      * @return \Illuminate\Http\Response
      */
     public function store(Recaptcha $recaptcha)
@@ -148,7 +148,9 @@ class ThreadsController extends Controller
      */
     protected function getThreads(Channel $channel, ThreadFilters $filters)
     {
-        $threads = Thread::latest()->filter($filters);
+        $threads = Thread::orderBy('pinned', 'DESC')
+            ->latest()
+            ->filter($filters);
 
         if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
