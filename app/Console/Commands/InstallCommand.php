@@ -124,9 +124,9 @@ class InstallCommand extends Command
     protected function migrateDatabaseWithFreshCredentials($credentials)
     {
         foreach ($credentials as $key => $value) {
-            $configKey = strtolower(str_replace("DB_", "", $key));
+            $configKey = strtolower(str_replace('DB_', '', $key));
 
-            if ($configKey === 'password' && $value == 'null' ) {
+            if ($configKey === 'password' && $value == 'null') {
                 config(["database.connections.mysql.{$configKey}" => '']);
 
                 continue;
