@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Channel;
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Symfony\Component\HttpFoundation\Response;
+use App\Channel;
 use Tests\TestCase;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ChannelAdministrationTest extends TestCase
 {
@@ -52,6 +52,28 @@ class ChannelAdministrationTest extends TestCase
         $this->get($response->headers->get('Location'))
             ->assertSee('php')
             ->assertSee('This is the channel for discussing all things PHP.');
+    }
+
+    /** @test */
+    public function an_administrator_can_edit_an_existing_channel()
+    {
+        $this->signInAdmin();
+
+        $channel = create('App\Channel');
+
+        $updated_data = [
+            'name' => 'altered',
+            'description' => 'altered channel description'
+        ];
+
+        $this->patch(
+            route('admin.channels.update', ['channel' => $channel->slug]),
+            $updated_data
+        );
+
+        $this->get(route('admin.channels.index'))
+            ->assertSee($updated_data['name'])
+            ->assertSee($updated_data['description']);
     }
 
     /** @test */
