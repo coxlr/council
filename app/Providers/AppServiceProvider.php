@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Deal with the issue of migration string length on older version of mysql
+        Schema::defaultStringLength(191);
+
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
 
