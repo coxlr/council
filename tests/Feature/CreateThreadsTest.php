@@ -3,10 +3,10 @@
 namespace Tests\Feature;
 
 use App\Activity;
+use Tests\TestCase;
 use App\Rules\Recaptcha;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
@@ -153,6 +153,23 @@ class CreateThreadsTest extends TestCase
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
 
         $this->assertEquals(0, Activity::count());
+    }
+
+    /** @test */
+    function a_new_thread_cannot_be_created_in_an_archived_channel()
+    {
+        $channel = factory('App\Channel')->create();
+
+        $response = $this->publishThread(['title' => 'Some Title', 'body' => 'Some body.']);
+
+        $this->get($response->headers->get('Location'))
+            ->assertSee('Some Title')
+            ->assertSee('Some body.');
+
+        $channel->archive();
+
+        $this->publishThread(['channel_id' => $channel->id])
+            ->assertSessionHasErrors('channel_id');
     }
 
     protected function publishThread($overrides = [])
