@@ -82413,20 +82413,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    computed: {
+        endpoint: function endpoint() {
+            return "/profiles/" + window.App.user.name + "/notifications";
+        }
+    },
+
     methods: {
         fetchNotifications: function fetchNotifications() {
             var _this = this;
 
-            axios.get('/profiles/' + window.App.user.name + '/notifications').then(function (response) {
+            axios.get(this.endpoint).then(function (response) {
                 return _this.notifications = response.data;
             });
         },
         markAsRead: function markAsRead(notification) {
             var _this2 = this;
 
-            axios.delete('/profiles/' + window.App.user.name + '/notifications/' + notification.id).then(function (response) {
+            axios.delete(this.endpoint + "/" + notification.id).then(function (_ref) {
+                var data = _ref.data;
+
                 _this2.fetchNotifications();
-                document.location.replace(response.data.link);
+
+                document.location.replace(data.link);
             });
         }
     }
