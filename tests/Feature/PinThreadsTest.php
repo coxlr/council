@@ -63,7 +63,7 @@ class PinThreadsTest extends TestCase
                 ['id' => $ids[2]]
             ]
         ]);
-
+        
         $this->post(route('pinned-threads.store', $pinned = $threads->last()));
 
         $this->getJson(route('threads'))->assertJson([

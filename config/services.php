@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -38,6 +37,5 @@ return [
     'recaptcha' => [
         'key' => env('RECAPTCHA_KEY'),
         'secret' => env('RECAPTCHA_SECRET')
-    ],
-
+    ]
 ];
