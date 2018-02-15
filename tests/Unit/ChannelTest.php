@@ -21,7 +21,7 @@ class ChannelTest extends TestCase
 
             $this->zip($items)->each(function ($pair) {
                 [$actual, $expected] = $pair;
-
+                
                 Assert::assertTrue($actual->is($expected));
             });
         });

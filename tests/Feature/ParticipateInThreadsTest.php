@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ParticipateInThreadsTest extends TestCase
 {
@@ -40,7 +40,7 @@ class ParticipateInThreadsTest extends TestCase
         $reply = make('App\Reply', ['body' => null]);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
+             ->assertSessionHasErrors('body');
     }
 
     /** @test */

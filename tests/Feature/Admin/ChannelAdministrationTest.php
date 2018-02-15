@@ -93,7 +93,7 @@ class ChannelAdministrationTest extends TestCase
 
         $this->assertTrue($channel->fresh()->archived);
     }
-
+    
     /** @test */
     public function the_path_to_a_channel_is_unaffected_by_its_archived_status()
     {

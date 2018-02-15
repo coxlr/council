@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div v-html="content" ref="content"></div>
-    </div>
+  <div>
+      <div v-html="content" ref="content"></div>
+  </div>
 </template>
 
 <script>

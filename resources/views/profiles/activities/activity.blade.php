@@ -4,8 +4,6 @@
             <span class="flex">
                 {{ $heading }}
             </span>
-            <span>
-            </span>
         </div>
     </div>
 
